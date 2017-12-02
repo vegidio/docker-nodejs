@@ -1,0 +1,18 @@
+[
+    {
+        "uid": "helloworld1",
+        "append": true,
+        "watch": false,
+        "script": "index.js",
+        "sourceDir": "/var/www/helloworld1",
+        "args": ["8080"]
+    },
+    {
+        "uid": "helloworld2",
+        "append": true,
+        "watch": false,
+        "script": "index.js",
+        "sourceDir": "/var/www/helloworld2",
+        "args": ["8081"]
+    }
+]
