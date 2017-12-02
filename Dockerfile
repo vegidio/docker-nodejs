@@ -1,5 +1,5 @@
 FROM node
-MAINTAINER Vinicius Egidio <vegidio@gmail.com>
+MAINTAINER Vinicius Egidio <me@vinicius.io>
 
 RUN npm install -g forever
 

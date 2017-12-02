@@ -35,7 +35,7 @@ $ docker build -t my-nodejs-image .
 The easiest way to set-up your applications to run in this single Node.js instance, is following the 2 configuration steps described below:
 
 - Create the appropriate [Directory Structure](#directory-structure).
-- Create the [config.json](#config.json) file that will tell Node.js how each application is supposed to run.
+- Create the [config.json](#configjson) file that will tell Node.js how each application is supposed to run.
 
 ### Directory Structure
 
@@ -43,7 +43,7 @@ The easiest way to set-up your applications to run in this single Node.js instan
 
 2. Inside the `www` folder, you must create sub-folders where each application will be located. In this example, we created two sub-folders, `helloworld1` and `helloworld2`, each one representing a different application. The code for the applications must be placed on those folders.
 
-3. Also inside the `www` folder, in the same level where your application folders are located, you must create a file called [config.json](config.json).
+3. Also inside the `www` folder, in the same level where your application folders are located, you must create a file called [config.json](#configjson).
 
 In the end, your directory structure should look like this:
 
@@ -86,10 +86,10 @@ The **config.json** file must have the following structure - an JSON array `[` `
 These are the parameters that you must set for each application. All fields are mandatory:
 
 - `uid`: a string to uniquely identify your app.
-- `append`: a boolean to set if you want to application logs to be appended together every time the server runs.
-- `watch`: a boolean to set if you want that application to automatically restart if any file is changed or created in the application folder.
-- `script`: a string that specifies that script that must be executed to run the application.
-- `sourceDir`: a string to specify the path where the application folder is located. **Important:** the path __must__ start with `/var/www/` and be concatenated with the folder that you created on step [#2](#directory-structure) of the directory structure.
+- `append`: a boolean to set if you want the application logs to be appended together every time the server runs.
+- `watch`: a boolean to set if you want the application to automatically restart when a file is changed or created in the application folder.
+- `script`: a string that specifies what script must be executed when the application runs.
+- `sourceDir`: a string that specify the path where the application folder is located. **Important:** the path __must__ start with `/var/www/` and be concatenated with the folder that you created on step [#2](#directory-structure) of the directory structure.
 - `args`: an array with the list of ports (in string format) that you want to expose for that application.
 
 ## Running the instance
@@ -106,7 +106,7 @@ $ docker run -d \
 
 But before you run the instance don't forget to update/add/remove the ports (`-p` parameter) to reflect the ports that you set for each application in the `config.json` file.
 
-You also need to update the volume path (`-v` parameter) to reflect the correct path in your local environment. As for the path in the Docker instance, you must always be `/var/www`.
+You also need to update the volume path (`-v` parameter) to reflect the correct path in your local environment. As for the path in the Docker instance, it must always be `/var/www`.
 
 ## License
 

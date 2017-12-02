@@ -7,4 +7,4 @@ services:
       - 8080:8080
       - 8081:8081
     volumes:
-      - /path/to/local/www:/var/www
+      - ${TRAVIS_BUILD_DIR}/www:/var/www
