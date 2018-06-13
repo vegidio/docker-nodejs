@@ -4,7 +4,7 @@ services:
   node:
     image: vegidio/nodejs
     ports:
-      - 8080:8080
       - 8081:8081
+      - 8082:8082
     volumes:
       - ${TRAVIS_BUILD_DIR}/www:/var/www

@@ -5,5 +5,6 @@ let server = http.createServer((req, res) => {
     res.end("Hello World 2");
 });
 
-server.listen(process.argv[2] || 0);
-console.log("App running at http://localhost:" + server.address().port);
+server.listen(process.env.NODE_PORT || 0, () => {
+    console.log("App running at http://localhost:" + server.address().port);
+});

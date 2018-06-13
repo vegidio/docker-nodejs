@@ -1,6 +1,6 @@
 FROM node
 MAINTAINER Vinicius Egidio <me@vinicius.io>
 
-RUN npm install -g forever
+RUN npm install -g pm2
 
-CMD forever /var/www/config.json
+CMD pm2 start /var/www/config.yml && pm2 logs
