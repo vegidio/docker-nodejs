@@ -1,4 +1,4 @@
-FROM node
+FROM node:alpine
 MAINTAINER Vinicius Egidio <me@vinicius.io>
 
 RUN npm install -g pm2
