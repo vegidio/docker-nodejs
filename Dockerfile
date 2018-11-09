@@ -1,7 +1,7 @@
 FROM node:alpine
 MAINTAINER Vinicius Egidio <me@vinicius.io>
 
-RUN npm install -g pm2
+RUN yarn global add pm2
 RUN pm2 install pm2-logrotate
 
 # Logrotate configuration
