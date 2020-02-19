@@ -1,6 +1,6 @@
 # vegidio/nodejs
 
-[![Travis](https://img.shields.io/travis/vegidio/docker-nodejs.svg)](https://travis-ci.org/vegidio/docker-nodejs/)
+[![Actions](https://github.com/vegidio/docker-nodejs/workflows/build/badge.svg)](https://github.com/vegidio/docker-nodejs/actions)
 [![Docker Pulls](https://img.shields.io/docker/pulls/vegidio/nodejs.svg)](https://store.docker.com/community/images/vegidio/nodejs)
 [![Apache 2.0](https://img.shields.io/badge/license-Apache_License_2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 

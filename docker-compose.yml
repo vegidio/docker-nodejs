@@ -7,4 +7,4 @@ services:
       - 8081:8081
       - 8082:8082
     volumes:
-      - ${TRAVIS_BUILD_DIR}/www:/var/www
+      - ${GITHUB_WORKSPACE}/www:/var/www

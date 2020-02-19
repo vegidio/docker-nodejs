@@ -1,5 +1,5 @@
 FROM node:alpine
-MAINTAINER Vinicius Egidio <me@vinicius.io>
+LABEL maintainer="Vinicius Egidio <me@vinicius.io>"
 
 RUN yarn global add pm2
 RUN pm2 install pm2-logrotate
