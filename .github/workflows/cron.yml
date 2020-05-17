@@ -1,16 +1,14 @@
-name: build
+name: cron
 
 on:
-  push:
-    branches:
-      - master
+  schedule:
+    - cron: '0 0 1 * *'
 
 env:
   IMAGE_NAME: vegidio/nodejs
 
 jobs:
   push:
-    if: "!contains(github.event.head_commit.message, '[skip-ci]')"
     runs-on: ubuntu-latest
     
     steps:
@@ -46,6 +44,7 @@ jobs:
         with:
           tag_name: ${{ steps.calver.outputs.date }}
           release_name: Release ${{ steps.calver.outputs.date }}
+          body: Recurring build to use the latest version of MongoDB
 
       - name: Push new image to the registry
         run: |

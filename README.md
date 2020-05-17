@@ -1,14 +1,14 @@
 # vegidio/nodejs
 
-[![Actions](https://github.com/vegidio/docker-nodejs/workflows/build/badge.svg)](https://github.com/vegidio/docker-nodejs/actions)
-[![Docker Pulls](https://img.shields.io/docker/pulls/vegidio/nodejs.svg)](https://store.docker.com/community/images/vegidio/nodejs)
+[![Actions](https://github.com/vegidio-docker/nodejs/workflows/build/badge.svg)](https://github.com/vegidio-docker/nodejs/actions)
+[![Docker Pulls](https://img.shields.io/docker/pulls/vegidio/nodejs.svg)](https://hub.docker.com/r/vegidio/nodejs)
 [![Apache 2.0](https://img.shields.io/badge/license-Apache_License_2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 A Docker image for Node.js that supports multiple applications running at the same instance.
 
-This image inherits directly from the [official Node.js image](https://store.docker.com/images/node) in the Docker Store.
+This image inherits directly from the [official Node.js image](https://hub.docker.com/_/node) in the Docker Store.
 
-## Usage
+## 🤖 Usage
 
 ### Pre-built image
 
@@ -30,7 +30,7 @@ In the project root folder, type:
 $ docker build -t vegidio/nodejs .
 ```
 
-## Setting-up multiple applications
+## 🧩 Setting-up multiple applications
 
 The easiest way to set-up your applications to run in this single Node.js instance, is following the 2 configuration steps described below:
 
@@ -90,7 +90,7 @@ These are the parameters that you must set for each application. All fields are 
 
 For the full list of parameters available to configure your application, please check the [PM2 documentation](http://pm2.keymetrics.io/docs/usage/application-declaration/).
 
-## Running the instance
+## 🏃‍♂️ Running the instance
 
 After you have both the directory structure and the `config.yml` file properly configured, you can now run the instance using the following command:
 
@@ -106,10 +106,10 @@ But before you run the instance don't forget to update/add/remove the ports (`-p
 
 You also need to update the volume path (`-v` parameter) to reflect the correct path in your local environment. As for the path in the Docker instance, it must always be `/var/www`.
 
-## License
+## 📝 License
 
 **vegidio/nodejs** is released under the Apache License. See [LICENSE](LICENSE.txt) for details.
 
-## Author
+## 👨🏾‍💻 Author
 
 Vinicius Egidio ([vinicius.io](http://vinicius.io))
