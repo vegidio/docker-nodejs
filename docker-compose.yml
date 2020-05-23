@@ -4,7 +4,7 @@ services:
   node:
     image: vegidio/nodejs
     ports:
-    - 8081:8081
-    - 8082:8082
+      - 8081:8081
+      - 8082:8082
     volumes:
-    - ${GITHUB_WORKSPACE}/www:/var/www
+      - ${GITHUB_WORKSPACE}/www:/var/www

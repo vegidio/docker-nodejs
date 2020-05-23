@@ -70,7 +70,7 @@ apps:
     watch: true
     exec_mode: cluster
     env:
-      NODE_PORT: 8081
+      - NODE_PORT: 8081
 
   - name: helloworld2
     script: index.js
@@ -78,7 +78,7 @@ apps:
     watch: true
     exec_mode: cluster
     env:
-      NODE_PORT: 8082
+      - NODE_PORT: 8082
 ```
 
 These are the parameters that you must set for each application. All fields are mandatory:
