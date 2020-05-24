@@ -45,7 +45,7 @@ jobs:
         with:
           tag_name: ${{ steps.calver.outputs.date }}
           release_name: Release ${{ steps.calver.outputs.date }}
-          body: Recurring build to use the latest version of MongoDB
+          body: Recurring build to use the latest version of Node.js
 
       - name: Push new image to the registry
         run: |
