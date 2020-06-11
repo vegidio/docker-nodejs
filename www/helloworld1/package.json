@@ -1,4 +1,3 @@
-
 {
     "name": "helloworld1",
     "version": "1.0.0",
@@ -8,6 +7,6 @@
         "lodash": "latest"
     },
     "scripts": {
-        "start": "yarn --prod && node ."
+        "start": "npm install --only=prod && node ."
     }
 }
