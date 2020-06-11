@@ -1,10 +1,11 @@
-let http = require("http");
+const http = require('http')
+const _ = require('lodash')
 
-let server = http.createServer((req, res) => {
-    res.writeHead(200, {"Content-Type": "text/plain"});
-    res.end("Hello World 1");
-});
+const server = http.createServer((req, res) => {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end(_.capitalize('HELLO WORLD WITH YARN START!'))
+})
 
 server.listen(process.env.NODE_PORT || 0, () => {
-    console.log("App running at http://localhost:" + server.address().port);
-});
+    console.log('App running at http://localhost:' + server.address().port);
+})

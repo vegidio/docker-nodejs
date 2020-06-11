@@ -1,6 +1,7 @@
 apps:
   - name: helloworld1
-    script: index.js
+    script: yarn
+    args: start
     cwd: /var/www/helloworld1/
     watch: true
     exec_mode: cluster

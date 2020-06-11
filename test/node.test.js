@@ -11,7 +11,7 @@ describe('Test Node.js', () =>
             .then((res) => {
                 expect(res.status).toBe(200);
                 expect(res.headers).toHaveProperty('content-type', 'text/plain');
-                expect(res.data).toEqual(expect.stringContaining('Hello World 1'));
+                expect(res.data).toEqual(expect.stringContaining('Hello world with yarn start!'));
             });
     });
 
@@ -20,7 +20,7 @@ describe('Test Node.js', () =>
             .then((res) => {
                 expect(res.status).toBe(200);
                 expect(res.headers).toHaveProperty('content-type', 'text/plain');
-                expect(res.data).toEqual(expect.stringContaining('Hello World 2'));
+                expect(res.data).toEqual(expect.stringContaining('Hello World with direct script call!'));
             });
     });
 });

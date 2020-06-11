@@ -1,0 +1,13 @@
+
+{
+    "name": "helloworld1",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "lodash": "latest"
+    },
+    "scripts": {
+        "start": "yarn --prod && node ."
+    }
+}
