@@ -35,7 +35,7 @@ $ docker build -t vegidio/nodejs .
 The easiest way to set-up your applications to run in this single Node.js instance, is following the 2 configuration steps described below:
 
 - Create the appropriate [Directory Structure](#directory-structure).
-- Create the [config.yml](#configyml) file that will tell Node.js how each application is supposed to run.
+- Create the [apps.config.js](#appsconfigjs) file that will tell Node.js how each application is supposed to run.
 
 ### Directory Structure
 
@@ -43,42 +43,50 @@ The easiest way to set-up your applications to run in this single Node.js instan
 
 2. Inside the `www` folder, you must create sub-folders where each application will be located. In this example, we created two sub-folders, `helloworld1` and `helloworld2`, each one representing a different application. The code for the applications must be placed on those folders.
 
-3. Also inside the `www` folder, in the same level where your application folders are located, you must create a file called [config.yml](#configyml).
+3. Also inside the `www` folder, in the same level where your application folders are located, you must create a file called [apps.config.js](#appsconfigjs).
 
 In the end, your directory structure should look like this:
 
 ```
 www
-├── config.yml
+├── apps.config.js
 ├── helloworld1
 │   └── index.js
 └── helloworld2
     └── index.js
 ```
 
-### config.yml
+### apps.config.js
 
 You now must edit the configuration file to describe how each application must behave while running in your Node.js instance.
 
-The **config.yml** file must have the following YAML structure, starting with a `apps:` element at the top and followed by the subelements described below:
+The **apps.config.js** file must have the following JavaScript structure, starting with a `apps:` element at the top and followed by the subelements described below:
 
-```yml
-apps:
-  - name: helloworld1
-    script: index.js
-    cwd: /var/www/helloworld1/
-    watch: true
-    exec_mode: cluster
-    env:
-      - NODE_PORT: 8081
-
-  - name: helloworld2
-    script: index.js
-    cwd: /var/www/helloworld2/
-    watch: true
-    exec_mode: cluster
-    env:
-      - NODE_PORT: 8082
+```javascript
+module.exports = {
+    apps: [{
+        name: "helloworld1",
+        script: "npm",
+        args: "start",
+        cwd: "/var/www/helloworld1/",
+        watch: true,
+        ignore_watch: ["node_modules", "package-lock.json"],
+        exec_mode: "cluster",
+        env: {
+            NODE_PORT: 8081
+        },
+    }, {
+        name: "helloworld2",
+        script: "index.js",
+        cwd: "/var/www/helloworld2/",
+        watch: true,
+        ignore_watch: ["node_modules", "package-lock.json"],
+        exec_mode: "cluster",
+        env: {
+            NODE_PORT: 8082
+        },
+    }]
+}
 ```
 
 These are the parameters that you must set for each application. All fields are mandatory:
@@ -92,7 +100,7 @@ For the full list of parameters available to configure your application, please 
 
 ## 🏃‍♂️ Running the instance
 
-After you have both the directory structure and the `config.yml` file properly configured, you can now run the instance using the following command:
+After you have both the directory structure and the `apps.config.js` file properly configured, you can now run the instance using the following command:
 
 ```
 $ docker run -d \
@@ -102,7 +110,7 @@ $ docker run -d \
     --name nodejs vegidio/nodejs
 ```
 
-But before you run the instance don't forget to update/add/remove the ports (`-p` parameter) to reflect the ports that you set for each application in the `config.yml` file.
+But before you run the instance don't forget to update/add/remove the ports (`-p` parameter) to reflect the ports that you set for each application in the `apps.config.js` file.
 
 You also need to update the volume path (`-v` parameter) to reflect the correct path in your local environment. As for the path in the Docker instance, it must always be `/var/www`.
 

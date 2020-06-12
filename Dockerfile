@@ -10,4 +10,4 @@ RUN pm2 set pm2-logrotate:retain 10
 RUN pm2 set pm2-logrotate:compress true
 
 # Start PM2
-CMD pm2-runtime start /var/www/config.yml
+CMD pm2-runtime start /var/www/apps.config.js
