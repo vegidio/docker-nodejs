@@ -1,8 +1,8 @@
 # vegidio/nodejs
 
-[![Actions](https://github.com/vegidio-docker/nodejs/workflows/build/badge.svg)](https://github.com/vegidio-docker/nodejs/actions)
+[![GitHub Actions](https://img.shields.io/github/workflow/status/vegidio-docker/nodejs/build)](https://github.com/vegidio-docker/nodejs/actions)
 [![Docker Pulls](https://img.shields.io/docker/pulls/vegidio/nodejs.svg)](https://hub.docker.com/r/vegidio/nodejs)
-[![Apache 2.0](https://img.shields.io/badge/license-Apache_License_2.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![ISC License](https://img.shields.io/npm/l/vimdb?color=important)](LICENSE.txt)
 
 A Docker image for Node.js that supports multiple applications running at the same instance.
 
@@ -10,24 +10,14 @@ This image inherits directly from the [official Node.js image](https://hub.docke
 
 ## 🤖 Usage
 
-### Pre-built image
-
-Run the container using pre-built image **vegidio/nodejs**:
+Run the container using the pre-built image **vegidio/nodejs**:
 
 ```
-$ docker run -d \
-    -p 8081:8081 \
-    -p 8082:8082 \
+$ docker run \
+    -e APPS_PREFIX=site \
     -v /path/to/local/www:/var/www \
-    --name nodejs vegidio/nodejs
-```
-
-### Build the image
-
-In the project root folder, type:
-
-```
-$ docker build -t vegidio/nodejs .
+    -p 80:80 \
+    nodejs vegidio/nodejs
 ```
 
 ## 🧩 Setting-up multiple applications
@@ -71,25 +61,19 @@ module.exports = {
         cwd: "/var/www/helloworld1/",
         watch: true,
         ignore_watch: ["node_modules", "package-lock.json"],
-        exec_mode: "cluster",
-        env: {
-            NODE_PORT: 8081
-        },
+        exec_mode: "cluster"
     }, {
         name: "helloworld2",
         script: "index.js",
         cwd: "/var/www/helloworld2/",
         watch: true,
         ignore_watch: ["node_modules", "package-lock.json"],
-        exec_mode: "cluster",
-        env: {
-            NODE_PORT: 8082
-        },
+        exec_mode: "cluster"
     }]
 }
 ```
 
-These are the parameters that you must set for each application. All fields are mandatory:
+These are some mandatory parameters that you must set for each application:
 
 - `name`: a string to uniquely identify your app.
 - `script`: a string that specifies what script must be executed when the application runs.
@@ -104,19 +88,44 @@ After you have both the directory structure and the `apps.config.js` file proper
 
 ```
 $ docker run -d \
-    -p 8081:8081 \
-    -p 8082:8082 \
     -v /path/to/local/www:/var/www \
+    -p 80:80 \
     --name nodejs vegidio/nodejs
 ```
 
-But before you run the instance don't forget to update/add/remove the ports (`-p` parameter) to reflect the ports that you set for each application in the `apps.config.js` file.
+Don't forget to update the volume path (`-v` parameter) above to reflect the correct path in your local environment. As for the path in the Docker instance, it must always be `/var/www`.
 
-You also need to update the volume path (`-v` parameter) to reflect the correct path in your local environment. As for the path in the Docker instance, it must always be `/var/www`.
+### Listening port
+
+In order for the reverse proxy to work and you be able to access your applications through friendly URLs, instead of server ports (i.e. `localhost/app/hello` 👍, instead of `localhost:50487` 🤮), you must make sure that your app listen to the correct port when it's executed.
+
+Each application will have the environment variable `NODE_PORT` automatically injected in it, so make sure to listen to the port contained in this variable. For example, if you are creating an Express.js application then your code will look similar to this:
+
+```typescript
+import * as express from 'express'
+const app = express()
+
+// The port comes from the environment variable NODE_PORT
+app.listen(process.env.NODE_PORT, () => console.log('Listening to the correct port!'))
+```
+
+### Accessing your applications
+
+With the container running, each app can be accessed through the URL [container_url/`prefix`/`name`](); where `name` is the parameter that you defined for each app in the [apps.config.js](#appsconfigjs) file above.
+
+As for `prefix`, the default value is `app`; so if you run a application called **restapi** then the URL to access it will [container_url/app/restapi](). The prefix can be changed by you to something else by passing the environment variable `APPS_PREFIX` when you execute the container.
+
+## 🛠 Build the image
+
+If you prefer to build this image yourself, instead of using the pre-built image available on [Docker Hub](https://hub.docker.com/r/vegidio/nodejs), then enter the following command in terminal, in the project's root directory:
+
+```
+$ docker build -t vegidio/nodejs --build-arg VERSION=1.2.3 .
+```
 
 ## 📝 License
 
-**vegidio/nodejs** is released under the Apache License. See [LICENSE](LICENSE.txt) for details.
+**vegidio/nodejs** is released under the ISC License. See [LICENSE](LICENSE.txt) for details.
 
 ## 👨🏾‍💻 Author
 
