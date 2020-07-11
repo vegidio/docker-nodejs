@@ -97,7 +97,7 @@ Don't forget to update the volume path (`-v` parameter) above to reflect the cor
 
 ### Listening port
 
-In order for the reverse proxy to work and you be able to access your applications through friendly URLs, instead of server ports (i.e. `localhost/app/hello` 👍, instead of `localhost:50487` 🤮), you must make sure that your app listen to the correct port when it's executed.
+In order for the reverse proxy to work and you be able to access your applications through friendly URLs (i.e. `localhost/app/hello` 👍, instead of `localhost:50487` 🤮), you must make sure that your app listen to the correct port when it's executed.
 
 Each application will have the environment variable `NODE_PORT` automatically injected in it, so make sure to listen to the port contained in this variable. For example, if you are creating an Express.js application then your code will look similar to this:
 
