@@ -17,9 +17,11 @@ let port = 8080
 const report: { name: string, path: string }[] = []
 
 ecosystem.apps.forEach((app: any) => {
+    // Determine the path
+    const path = app.env.PATH_REWRITE || `/${process.env.APPS_PREFIX}/${app.name}`
+
     // Calculate the port for each app
     port += 1
-    const path = `/${process.env.APPS_PREFIX}/${app.name}`
 
     // Create friendly path to the app, without the port
     proxy.use(path, createProxyMiddleware({
@@ -35,8 +37,12 @@ ecosystem.apps.forEach((app: any) => {
     })
 })
 
+const isLogOn = process.env.LOG_LEVEL !== 'silent'
+
 // Starting server
 proxy.listen(80, () => {
-    logger.info('🤖 Reverse proxy running for the apps:')
-    report.forEach(app => logger.info('- %s, path: %s', app.name, app.path))
+    if (isLogOn) {
+        logger.info('🤖 Reverse proxy running for the apps:')
+        report.forEach(app => logger.info('- %s, path: http://localhost%s', app.name, app.path))
+    }
 })

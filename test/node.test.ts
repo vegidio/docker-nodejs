@@ -16,7 +16,7 @@ describe('Test Node.js', () =>
     })
 
     test('Check Node app 2', () => {
-        return axios.get('http://localhost/app/helloworld2')
+        return axios.get('http://localhost/world')
             .then((res) => {
                 expect(res.status).toBe(200)
                 expect(res.headers).toHaveProperty('content-type', 'text/plain')

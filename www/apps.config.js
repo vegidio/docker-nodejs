@@ -18,7 +18,8 @@ module.exports = {
         ignore_watch: ['node_modules', 'package-lock.json'],
         exec_mode: 'cluster',
         env: {
-            WORLD: 'World'
+            WORLD: 'World',
+            PATH_REWRITE: '/world'
         }
     }]
 }
