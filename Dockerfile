@@ -5,6 +5,10 @@ LABEL maintainer="Vinicius Egidio <me@vinicius.io>"
 ARG VERSION
 ENV IMAGE_VERSION=$VERSION
 
+# Install Git
+RUN apk --no-cache add git
+
+# Install PM2
 RUN yarn global add pm2
 RUN pm2 install pm2-logrotate
 
